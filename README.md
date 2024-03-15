@@ -1,43 +1,45 @@
 # [IT Purple Hack - Solving CLTV tasks](https://eval.ai/web/challenges/challenge-page/2228/overview)
 
-Это решение, позволяющее предсказывать вероятность перехода клиента банка (юр. лица) в каждый из 17 продуктовых кластеров на горизонте 12 месяцев. Мы провели глубокое исследование возможностей применения ИИ в задачах с CLTV, которое может внести вклад в развитие новых решений в этой области.
+winner 3th plase - [link to presentation](https://drive.google.com/drive/folders/1v8k7YrlSVRtAc2gshzRDfNkWN9KZ3YM-?usp=sharing) 
 
-# Итоговое решение состоит из:
-- **CatBoost в качестве мультиклассификатора** для предсказания кластера. Для повышение метрики использовались one-hot и label-encoder. Был преобразован train датасет и отобраны признаки. На данном этапе на публичном датасете модель показывала скор ~0.87. После ряда экспериментов с моделью мы попробовали изменить кодировку категориальных признаков, что улучшило скор модели до **0.89752**.
-- **Каскад 22 бинарных моделей**. Метод построен на обучении моделей, предсказывающих вероятность оттока и склонности отдельных продуктов. Итоговый скор этой модели составил **0.86086**. Добавление модели оттока компании как признака, новые признаки, замена catboost на lightjbm и другие эксперименты с моделью в результате скор не улучшили.
-- Ансамбль трех моделей: **линейная регрессия, lightgbm, catboost**. Публичный скор получившегося ансамбля - **0.87257**.
+This solution allows predicting the probability of a bank client (legal entity) transitioning to each of the 17 product clusters over a 12-month horizon. We conducted in-depth research into the application of AI in CLTV tasks, which can contribute to the development of new solutions in this area.
 
-Далее мы продолжили эксперименты и пробовали объединить эти модели между собой, что стабильно приводило к повышению скора. Ансамбль из Мультиклассификатора и Каскада принес нам скор 0.90001. Этот результат мы также объединили с последним ансамблем, в результате чего добились нашего итогового скора на лидерборде - **0.90155**.
+# The final solution consists of:
+- **CatBoost as a multiclass classifier** for cluster prediction. One-hot and label-encoder techniques were used to improve metrics. The training dataset was transformed, and features were selected. At this stage, the model showed a score of approximately 0.87 on the public dataset. After a series of experiments with the model, we tried changing the encoding of categorical features, which improved the model score to **0.89752**.
+- **Cascade of 22 binary models**. The method is based on training models to predict the churn probability and propensity of individual products. The final score of this model was **0.86086**. Adding the company churn model as a feature, new features, replacing CatBoost with LightGBM, and other experiments with the model did not improve the score.
+- Ensemble of three models: **linear regression, LightGBM, CatBoost**. The public score of the resulting ensemble is **0.87257**.
 
-Также мы сделали модель **для предсказания start_cluster в month_6** тестового датасета. [Получившийся датасет](https://drive.google.com/file/d/1IduKs5XyuIBH9LH-WzFBFrRBktYQXSju/view?usp=sharing), примененный к моделям выше, незначительно повышал их результат на тысячные-сотые доли. Использовалась также в нашем итоговом решении.
+We continued experimenting and tried to combine these models, which consistently led to score improvements. The ensemble of the Multiclass Classifier and Cascade brought us a score of 0.90001. This result was also combined with the latest ensemble, resulting in our final leaderboard score of **0.90155**.
 
-# Описание основных файлов
-- baseline_valya_binary_kaskad.ipynb *Каскад бинарных моделей*
-- baseline_alina_score90.ipynb *Мультиклассификатор*
-- baseline_newv2.ipynb *Ансамбль*
-- coeff_model_sub.py *Вывод*
-  
-Остальные файлы представляют дополнительные исследования, проведенные нами в рамках хакатона.
+We also created a model **to predict start_cluster in month_6** of the test dataset. [The resulting dataset](https://drive.google.com/file/d/1IduKs5XyuIBH9LH-WzFBFrRBktYQXSju/view?usp=sharing), applied to the above models, slightly improved their results by fractions of thousandths or hundredths. It was also used in our final solution.
 
-# Дополнительные исследования
-- Модель **MultinomialHMM** показала самый низкий скор - 0.61. 
-- Модели **NaiveNB** и **KNN** использовались для создания дополнительных признаков, но не подошли и показали слабый результат (от 0.7 до 0.8). 
-- Для модели **RandomForestClassifier** параметры подбирались с помощью optuna, но дал скор не выше 0.85 - 0.86. Пробовали полиномиальные признаки – снижало результат до 0.8. Эксперименты с **ImbalancedRandomForestClassifier** и сегментами также снижали результат. 
-- Нейросеть **TabNet** дала результат около 0.78. Мы хотели также поэкспериментировать с другими нейросетями, как RNN, но не успели заняться этим в рамках хакатона. Но нам показалось интересным представить задачу кейса, как известную задачу next-basket prediction, и исследовать схожие методы.
-- Ансамбль **lightgbm+lightgbm с optuna**, скор 0.87666.
+# Description of main files
+- baseline_valya_binary_kaskad.ipynb *Cascade of binary models*
+- baseline_alina_score90.ipynb *Multiclass classifier*
+- baseline_newv2.ipynb *Ensemble*
+- coeff_model_sub.py *Output*
   
-# Команда [MISIShunters](https://misishunters.website.yandexcloud.net)
-- [Алиса Семенова](https://t.me/NeAlyssa)
-  Project Manager, Analyst || 4 курс Института компьютерных наук НИТУ МИСИС
+Other files represent additional research conducted by us within the hackathon.
+
+# Additional research
+- **MultinomialHMM model** showed the lowest score - 0.61.
+- **NaiveNB** and **KNN models** were used to create additional features but did not fit well and showed weak results (from 0.7 to 0.8).
+- For the **RandomForestClassifier model**, parameters were tuned using Optuna but yielded a score no higher than 0.85 - 0.86. Polynomial features were tried, which reduced the result to 0.8. Experiments with **ImbalancedRandomForestClassifier** and segments also reduced the result.
+- The **TabNet neural network** yielded a result of about 0.78. We also wanted to experiment with other neural networks like RNN, but we didn't have time to do so within the hackathon. However, we found it interesting to present the task as a well-known next-basket prediction problem and explore similar methods.
+- Ensemble of **LightGBM + LightGBM with Optuna**, score 0.87666.
   
-- [Алина Бурыкина](https://t.me/BurykinaA)
-  ML, Backend developer || 4 курс Института компьютерных наук НИТУ МИСИС
+# Team [MISIShunters](https://misishunters.website.yandexcloud.net)
+- [Alisa Semenova](https://t.me/NeAlyssa)
+  Project Manager, Analyst || 4th year, Institute of Computer Science, NUST MISIS
   
-- [Валентина Николаева](https://t.me/qswder)
-  Data Scientist, OZON Fintech || Выпускница РАНХиГС, экономика и финансы 
+- [Alina Burykina](https://t.me/BurykinaA)
+  ML Engineer, Backend developer || 4th year, Institute of Computer Science, NUST MISIS
   
-- [Екатерина Межуева](https://t.me/tg_katyaa)
-  Data Scientist, Департамент Информационных технологий г. Москвы || Выпускница РАНХиГС, экономика и финансы
+- [Valentina Nikolaeva](https://t.me/qswder)
+  Data Scientist, OZON Fintech || Graduate, RANEPA, Economics and Finance
   
-- [Елизавета Борисенко](https://t.me/kokosikEH)
-  Designer, Frontend developer || 4 курс Института компьютерных наук НИТУ МИСИС 
+- [Ekaterina Mezhuieva](https://t.me/tg_katyaa)
+  Data Scientist, Department of Information Technologies, Moscow City || Graduate, RANEPA, Economics and Finance
+  
+- [Elizaveta Borisenko](https://t.me/kokosikEH)
+  Designer, Frontend Developer || 4th year, Institute of Computer Science, NUST MISIS
