@@ -39,7 +39,7 @@ Other files represent additional research conducted by us within the hackathon.
   Data Scientist, OZON Fintech || Graduate, RANEPA, Economics and Finance
   
 - [Ekaterina Mezhuieva](https://t.me/tg_katyaa)
-  Data Scientist, Department of Information Technologies, Moscow City || Graduate, RANEPA, Economics and Finance
+  Data Scientist, Department of Information Technologies || Graduate, RANEPA, Economics and Finance
   
 - [Elizaveta Borisenko](https://t.me/kokosikEH)
   Designer, Frontend Developer || 4th year, Institute of Computer Science, NUST MISIS
