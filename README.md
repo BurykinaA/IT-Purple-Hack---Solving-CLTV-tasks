@@ -1,6 +1,6 @@
 # [IT Purple Hack - Solving CLTV tasks](https://eval.ai/web/challenges/challenge-page/2228/overview)
 
-winner 3th plase - [link to presentation](https://drive.google.com/drive/folders/1v8k7YrlSVRtAc2gshzRDfNkWN9KZ3YM-?usp=sharing) 
+Winner of the 3rd place - [link to the presentation](https://drive.google.com/drive/folders/1v8k7YrlSVRtAc2gshzRDfNkWN9KZ3YM-?usp=sharing) 
 
 This solution allows predicting the probability of a bank client (legal entity) transitioning to each of the 17 product clusters over a 12-month horizon. We conducted in-depth research into the application of AI in CLTV tasks, which can contribute to the development of new solutions in this area.
 
