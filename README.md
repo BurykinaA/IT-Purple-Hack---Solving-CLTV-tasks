@@ -29,7 +29,7 @@ Other files represent additional research conducted by us within the hackathon.
 - Ensemble of **LightGBM + LightGBM with Optuna**, score 0.87666.
   
 # Team [MISIShunters](https://misishunters.website.yandexcloud.net)
-- [Alisa Semenova](https://t.me/NeAlyssa)
+- [Alyssa Semenova](https://t.me/NeAlyssa)
   Project Manager, Analyst || 4th year, Institute of Computer Science, NUST MISIS
   
 - [Alina Burykina](https://t.me/BurykinaA)
